@@ -1,0 +1,10 @@
+{
+  "name": "php-projet-de-gestion-de-flotte-de-vehicules",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "/index.html",
+  "dependencies": {
+    "php": "1.0.2"
+  }
+}

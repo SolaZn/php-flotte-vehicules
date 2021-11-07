@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : Dim 07 nov. 2021 à 03:48
+-- Généré le : Dim 07 nov. 2021 à 04:06
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -60,22 +60,25 @@ CREATE TABLE IF NOT EXISTS `facture` (
   `dateDebut` date NOT NULL,
   `dateFin` date DEFAULT NULL,
   `montant` int(11) NOT NULL DEFAULT '0',
-  `etatReglement` varchar(11) NOT NULL,
+  `etatReglement` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `location` (`idClient`,`idVehicule`,`dateDebut`),
   KEY `idVehicule` (`idVehicule`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `facture`
 --
 
 INSERT INTO `facture` (`id`, `idClient`, `idVehicule`, `dateDebut`, `dateFin`, `montant`, `etatReglement`) VALUES
-(7, 2, 1, '2021-11-10', '2021-11-16', 246, 'impayée'),
-(8, 2, 3, '2021-11-10', '2021-11-16', 246, 'impayée'),
-(9, 1, 4, '2021-11-23', '2021-11-29', 246, 'impayée'),
-(10, 1, 10, '2021-11-23', '2021-11-29', 246, 'impayée'),
-(11, 1, 13, '2021-11-17', NULL, 0, 'impayée');
+(7, 2, 1, '2021-11-10', '2021-11-16', 246, 0),
+(8, 2, 3, '2021-11-10', '2021-11-16', 246, 0),
+(9, 1, 4, '2021-11-23', '2021-11-29', 246, 0),
+(10, 1, 10, '2021-11-23', '2021-11-29', 246, 0),
+(11, 1, 13, '2021-11-17', NULL, 0, 0),
+(12, 2, 18, '2021-11-24', '2021-12-20', 1144, 0),
+(13, 2, 23, '2021-11-24', '2021-12-20', 2054, 0),
+(14, 2, 14, '2021-11-17', NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -105,16 +108,16 @@ INSERT INTO `vehicule` (`id`, `type`, `qte`, `specs`, `image`, `etat`) VALUES
 (10, 'Ford Focus', 1, '{\"prix\": \"41\", \"annee\": \"2021\", \"moteur\": \"electrique\"}', '.\\vue\\content\\images\\vehicules\\fordfocus.png', '1'),
 (12, 'Fiat 500', 1, '{\"prix\": \"37\", \"type\": \"compacte\", \"annee\": \"2019\", \"moteur\": \"essence\"}', '.\\vue\\content\\images\\vehicules\\fiat500.png', 'disponible'),
 (13, 'Fiat 500', 1, '{\"prix\": \"37\", \"type\": \"compacte\", \"annee\": \"2019\", \"moteur\": \"essence\"}', '.\\vue\\content\\images\\vehicules\\fiat500.png', '1'),
-(14, 'Fiat 500', 1, '{\"prix\": \"37\", \"type\": \"compacte\", \"annee\": \"2019\", \"moteur\": \"essence\"}', '.\\vue\\content\\images\\vehicules\\fiat500.png', 'disponible'),
+(14, 'Fiat 500', 1, '{\"prix\": \"37\", \"type\": \"compacte\", \"annee\": \"2019\", \"moteur\": \"essence\"}', '.\\vue\\content\\images\\vehicules\\fiat500.png', '2'),
 (15, 'Fiat 500', 1, '{\"prix\": \"37\", \"type\": \"compacte\", \"annee\": \"2019\", \"moteur\": \"essence\"}', '.\\vue\\content\\images\\vehicules\\fiat500.png', 'disponible'),
 (16, 'Renault Clio', 1, '{\"prix\": \"44\", \"type\": \"citadine\", \"annee\": \"2019\", \"moteur\": \"essence\"}', '.\\vue\\content\\images\\vehicules\\renaultclio.png', 'disponible'),
 (17, 'Renault Clio', 1, '{\"prix\": \"44\", \"type\": \"citadine\", \"annee\": \"2019\", \"moteur\": \"essence\"}', '.\\vue\\content\\images\\vehicules\\renaultclio.png', 'disponible'),
-(18, 'Renault Clio', 1, '{\"prix\": \"44\", \"type\": \"citadine\", \"annee\": \"2019\", \"moteur\": \"essence\"}', '.\\vue\\content\\images\\vehicules\\renaultclio.png', 'disponible'),
+(18, 'Renault Clio', 1, '{\"prix\": \"44\", \"type\": \"citadine\", \"annee\": \"2019\", \"moteur\": \"essence\"}', '.\\vue\\content\\images\\vehicules\\renaultclio.png', '2'),
 (19, 'Renault Clio', 1, '{\"prix\": \"44\", \"type\": \"citadine\", \"annee\": \"2019\", \"moteur\": \"essence\"}', '.\\vue\\content\\images\\vehicules\\renaultclio.png', 'disponible'),
 (20, 'Mercedes Classe B', 1, '{\"prix\": \"79\", \"type\": \"monospace\", \"annee\": \"2019\", \"moteur\": \"diesel\"}', '.\\vue\\content\\images\\vehicules\\mercedesclasseb.png', 'disponible'),
 (21, 'Mercedes Classe B', 1, '{\"prix\": \"79\", \"type\": \"monospace\", \"annee\": \"2019\", \"moteur\": \"diesel\"}', '.\\vue\\content\\images\\vehicules\\mercedesclasseb.png', 'disponible'),
 (22, 'Mercedes Classe B', 1, '{\"prix\": \"79\", \"type\": \"monospace\", \"annee\": \"2019\", \"moteur\": \"diesel\"}', '.\\vue\\content\\images\\vehicules\\mercedesclasseb.png', 'disponible'),
-(23, 'Mercedes Classe B', 1, '{\"prix\": \"79\", \"type\": \"monospace\", \"annee\": \"2019\", \"moteur\": \"diesel\"}', '.\\vue\\content\\images\\vehicules\\mercedesclasseb.png', 'disponible'),
+(23, 'Mercedes Classe B', 1, '{\"prix\": \"79\", \"type\": \"monospace\", \"annee\": \"2019\", \"moteur\": \"diesel\"}', '.\\vue\\content\\images\\vehicules\\mercedesclasseb.png', '2'),
 (24, 'Mercedes Classe B', 1, '{\"prix\": \"79\", \"type\": \"monospace\", \"annee\": \"2019\", \"moteur\": \"diesel\"}', '.\\vue\\content\\images\\vehicules\\mercedesclasseb.png', 'disponible'),
 (25, 'Ford Focus', 1, '{\"prix\": \"41\", \"annee\": \"2021\", \"moteur\": \"electrique\"}', '.\\vue\\content\\images\\vehicules\\fordfocus.png', 'disponible'),
 (26, 'Ford Focus', 1, '{\"prix\": \"41\", \"annee\": \"2021\", \"moteur\": \"electrique\"}', '.\\vue\\content\\images\\vehicules\\fordfocus.png', 'disponible');

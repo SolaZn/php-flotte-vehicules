@@ -164,7 +164,7 @@ function setNewInvoice($idVehicule, $idClient, $dateDebut, $dateFin)
 
 		$montant = $intervalle->d * $specs['prix'];
 
-		$etatFacture = 'impayée';
+		$etatFacture = 0;
 
 		if(empty($dateFin)){
 			$sql = "INSERT INTO `facture`(`idClient`, `idVehicule`, `dateDebut`, `etatReglement`) 

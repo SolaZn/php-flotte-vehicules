@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Accueil</title>
+    <title>La Garagerie - accueil abonnés</title>
     <link rel="stylesheet" href="./vue/abonne/assets/bootstrap/css/bootstrap.min.css">
 </head>
 
@@ -12,9 +12,9 @@
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid" style="gap: 15px;"><a
                 href="index.php?controle=abonne&amp;action=accueilAbonne"><img src="./vue/content/images/logo.png"
-                    height="45"></a><span>
-                <?php echo $_SESSION['profil']['nom']; ?>
-            </span><button data-bs-toggle="collapse" data-bs-target="#navcol-1" class="navbar-toggler"><span
+                    height="45"></a><small>
+                <?php echo $_SESSION['profil']['nom'] . '<br>' . $_SESSION['profil']['denomEnt']; ?>
+            </small><button data-bs-toggle="collapse" data-bs-target="#navcol-1" class="navbar-toggler"><span
                     class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse d-xl-flex justify-content-xl-center" id="navcol-1">
                 <ul class="navbar-nav">

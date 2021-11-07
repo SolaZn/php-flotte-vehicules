@@ -1,5 +1,6 @@
 <?php
 
+// fonctions de connexion
 function getCredentials($login, &$profil=array()){
     require("./modele/connectBD.php");
 
@@ -49,6 +50,63 @@ function getHash($login, &$hash=array()){
 		}
 		else {
 			$hash = $resultat[0]; 
+            return true;
+        }
+}
+
+// fonctions d'affichage
+function getVehicules($idClient, &$vehicules = array()){
+	require("./modele/connectBD.php");
+
+    $sql="SELECT * FROM `vehicule` WHERE etat=:id";
+		try {
+			$commande = $pdo->prepare($sql);
+			$commande->bindParam(':id', $idClient);
+			$bool = $commande->execute();
+			if ($bool) 
+				$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+		
+		}
+		catch (PDOException $e) {
+			echo utf8_encode("Echec de select : " . $e->getMessage());
+			die(); 
+		}
+
+		if (count($resultat) == 0) {
+			$vehicules = ""; 
+			return false; 
+		}
+		else {
+			$vehicules = $resultat; 
+            return true;
+        }
+}
+
+function getAvailableVehicles(&$vehicules = array()){
+	require("./modele/connectBD.php");
+
+	$dispo = "disponible";
+	
+	$sql="SELECT * FROM `vehicule` WHERE etat=:dispo";
+		try {
+			$commande = $pdo->prepare($sql);
+			$commande->bindParam(':dispo', $dispo);
+			$bool = $commande->execute();
+			if ($bool) 
+				$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+		
+		}
+		catch (PDOException $e) {
+			echo utf8_encode("Echec de select : " . $e->getMessage());
+			die(); 
+		}
+
+		if (count($resultat) == 0) {
+			$vehicules = ""; 
+			return false; 
+		}
+		else {
+			$vehicules = $resultat; 
             return true;
         }
 }

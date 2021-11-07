@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Accueil</title>
-    <link rel="stylesheet" href="./vue/abonne/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./vue/abonne/assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="./vue/abonne/assets/css/Login-Form-Clean.css">
 </head>
 
@@ -31,7 +31,7 @@
             <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Connexion</button></div>
         </form>
     </section>
-    <script src="./vue/abonne/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

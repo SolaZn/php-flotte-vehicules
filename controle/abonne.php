@@ -24,7 +24,6 @@
                         // Ou alors créer un tableau qui comporte les 
                         // deux informations à transmettre
                         
-                        set_session($profil);
                         set_cookie($profil);
                         
                         $url = "index.php?controle=abonne&action=accueilAbonne";
@@ -53,6 +52,8 @@
                 // si le mot de passe est bon
                 $profil = array();
                 getCredentials($login, $profil);
+                set_session($profil);
+
                 echo("bonjour");
                 return true;
             }else{
@@ -72,5 +73,33 @@
 
     function set_cookie($profil){
         $_COOKIE['profil'] = $profil;
+    }
+
+    function accueilAbonne(){
+        require("./modele/abonneBD.php");
+
+        $vehicules = array();
+        $id = $_SESSION['profil']['id'];
+
+        getVehicules($id, $vehicules);
+
+        require("./vue/abonne/accueilAbonne.tpl");       
+    }
+
+    function reservationVehicules(){
+        require("./modele/abonneBD.php");
+
+        $vehicules = array();
+        
+        getAvailableVehicles($vehicules);
+
+        require("./vue/abonne/reservationVehicules.tpl");
+        
+    }
+
+    function affichageFactures(){
+        require("./modele/abonneBD.php");
+
+
     }
 ?>

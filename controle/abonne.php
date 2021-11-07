@@ -1,5 +1,5 @@
 <?php
-//TODO: Cookies + vérifier si la déconnexion est complète, afficher les dates de début et de fin pour chaque véhicule loué + commenter les fonctions
+//TODO: Cookies + afficher les dates de début et de fin pour chaque véhicule loué + commenter les fonctions
 
 function connexionAbonne($mode = "")
 {
@@ -143,6 +143,6 @@ function enregistrerReservation()
 function deconnexion()
 {
     session_destroy();
-    $url = "index.php?controle=abonne&action=connexionAbonne";
+    $url = "index.php?controle=nonAbonne&action=accueil";
     header("Location:" . $url);
 }

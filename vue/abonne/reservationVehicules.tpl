@@ -7,13 +7,11 @@
     <title>Accueil</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
-    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
 </head>
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md">
-        <div class="container-fluid"><a class="navbar-brand" href="#">Brand</a><span>
+        <div class="container-fluid" style="gap: 15px;"><a href="index.php?controle=abonne&amp;action=accueilAbonne"><img src="./vue/content/images/logo.png" height="45"></a><span>
                 <?php echo $_SESSION['profil']['nom']; ?>
             </span><button data-bs-toggle="collapse" data-bs-target="#navcol-1" class="navbar-toggler"><span
                     class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -25,7 +23,7 @@
                     <li class="nav-item"></li>
                 </ul>
             </div><a class="btn btn-primary" role="button" href="index.php?controle=abonne&amp;action=deconnexion"
-                style="background: var(--bs-pink);">Se déconnecter</a>
+                style="background: var(--bs-red); outline:0 !important; box-shadow: none !important; ">Se déconnecter</a>
         </div>
     </nav>
     <div class="card">
@@ -39,18 +37,13 @@
             </ul>
         </div>
         <div class="card-body">
-            <h1 class="text-center card-title">Choisissez un véhicule dans la liste</h1>
-            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac
-                facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-            <form class="d-flex flex-column" method="POST">
+            <h1 class="text-center card-title">Réservez parmi les véhicules disponibles</h1>
+            <!-- <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac
+                facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p> -->
+                <form class="d-flex flex-column" action="index.php?controle=abonne&amp;action=reservationVehicules" method="post">
                     <?php 
                         if(!empty($vehicules)){
-                            echo '<div class="container-fluid shadow-lg d-flex flex-row flex-wrap justify-content-xl-end"><a
-                            class="btn btn-primary shadow-lg" role="button" type="submit"
-                            href="index.php?controle=abonne&amp;action=reservationVehicules">Réserver la sélection</a></div>';
-
-                            echo '<div class="container-fluid shadow-lg d-flex flex-row flex-wrap">';
-
+                            echo '<div class="container-fluid d-flex flex-row flex-wrap justify-content-xl-center" style="gap:30px">';
 
                             foreach($vehicules as $vehicule){
                                 $specs = array();
@@ -64,10 +57,13 @@
                                 echo '<h5 class="card-title">' . $vehicule['type'] . '</h5>';
                                 echo '<p class="card-text">' . $specs['moteur'] . '</p>';
                                 echo '<div class="form-check"><input type="checkbox" class="form-check-input"
-                                id="form-Check-' . $vehicule['id'] . '" value="' . $vehicule['id'] .'" /><label class="form-check-label"
+                                id="form-Check-' . $vehicule['id'] . '" value="' . $vehicule['id'] .'" name="checked[]" /><label class="form-check-label"
                                             for="form-Check-' . $vehicule['id'] . '">Sélectionner le véhicule</label></div>';
                                 echo '</div></div></div></div>';
                             }
+
+                            echo '<div class="container-fluid d-flex flex-row flex-wrap justify-content-xl-end"><button class="btn btn-primary shadow-lg" 
+                            type="submit">Réserver la sélection</button></div>';
 
                             echo '</div>';
 

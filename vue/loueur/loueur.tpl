@@ -93,6 +93,21 @@
         </form>
     </div>
 
+    <input type="checkbox" id="clickd">
+    <label for="clickd" class="showd text-wrap badge bg-info" style="color: white; height: 15%;">Afficher factures</label>
+    <div class="facturation">
+        <form action="index.php?controle=loueur&action=facturationLoueur" method="post">
+            <label for="clickd" class="close-btn fas fa-times"></label>
+            <h3>Afficher factures</h3>
+            <select name="idClient" size="1">
+                <?php foreach($clients as $client){
+					echo '<option value="' . $client['id'] . '">' . $client['id'] . ' | '. $client['denomEnt'] . '</option>';
+				}?>
+            </select>
+            <input type="submit" value="Voir facture">
+        </form>
+    </div>
+
 
     <h2 style="text-align:center; text-decoration:underline;"> Véhicules actuellement en stock</h4>
     <div style="margin: 20px;">

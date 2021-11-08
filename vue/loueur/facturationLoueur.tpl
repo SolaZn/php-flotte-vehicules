@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 
     <script src="https://kit.fontawesome.com/228973d50f.js" crossorigin="anonymous"></script>
-    <title>Espace loueur - La Garagerie</title>
+    <title>Facturation - La Garagerie</title>
 </head>
 
 <body>
@@ -20,6 +20,8 @@
     </nav>
 
 <div style="margin: 20px;">
+<br>
+<br>
         <table class="table table-striped table-success table-hover table-sm table-bordered caption-top">
 		  <caption>Liste des véhicules en cours de location</caption>
 
@@ -31,16 +33,18 @@
                     <th>Type de boîte de vitesse</th>
                     <th>Date de début de location</th>
                     <th>Date de fin de location</th>
+                    <th>Montant</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($vlocations as $vlocation): $specs2 = array(); $specs2 = json_decode($vlocation['specs'], true);?>
+                <?php $total = 0;foreach($factures as $facture): $specs2 = array(); $specs2 = json_decode($facture['specs'], true);
+                ?>
                 <tr>
                     <td>
-                        <?= $vlocation['denomEnt']?>
+                        <?= $facture['denomEnt']?>
                     </td>
                     <td>
-                        <?= $vlocation['type'] ?>
+                        <?= $facture['type'] ?>
                     </td>
                     <td>
                         <?= $specs2['moteur'] ?>
@@ -49,15 +53,34 @@
                         <?= $specs2['boite'] ?>
                     </td>
                     <td>
-                        <?= $vlocation['dateDebut'] ?>
+                        <?= $facture['dateDebut'] ?>
                     </td>
                     <td>
-                        <?= $vlocation['dateFin'] ?>
+                        <?= $facture['dateFin'] ?>
+                    </td>
+                    <td>
+                        <?php if($facture['dateFin'] == NULL){ $nbjours = substr($facture['dateDebut'],9,10);
+
+                        $facture['montant'] = (31 - $nbjours) * $specs2['prix']; echo $facture['montant']; }else{ echo $facture['montant'];}
+                        $total += $facture['montant']; ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
+            <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>TOTAL</th>
+
+                <th><?= $total ?> euros</th>
+            </tr>
+            </tfoot> 
         </table>
+        <a href="index.php?controle=loueur&action=connecteL">Retour</a>
     </div>
 </body>
 </html>

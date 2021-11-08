@@ -141,4 +141,75 @@ function getHash($login, &$hash = array())
 	}
 }
 
+function afficherClients(&$clients = array()){
+	require("./modele/connectBD.php");
+
+	try{
+		$sql ="SELECT * FROM client WHERE client.nom !='LOUEUR' ";
+		$commande = $pdo->prepare($sql);
+		$bool = $commande->execute();
+	if ($bool)
+		$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+	} catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage());
+		die();
+	}
+
+	if (count($resultat) == 0) {
+		$clients = "";
+		return false;
+	} else {
+		$clients = $resultat;
+		return true;
+	}
+}
+
+function getVehicules($idClient, &$vehicules = array()){
+	require("./modele/connectBD.php");
+	
+	try{
+		$sql ="SELECT * FROM vehicule WHERE vehicule.etat =:idClient";
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':idClient', $idClient);
+		$bool = $commande->execute();
+	if ($bool)
+		$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+	} catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage());
+		die();
+	}
+
+	if (count($resultat) == 0) {
+		$vehicules = "";
+		return false;
+	} else {
+		$vehicules = $resultat;
+		return true;
+	}
+}
+
+function getFacture($idVehicule, &$facture = array()){
+	require("./modele/connectBD.php");
+
+	try{
+		$sql ="SELECT vehicule.*, client.*, facture.* FROM facture JOIN vehicule ON facture.idVehicule = vehicule.id JOIN client ON facture.idClient = client.id WHERE vehicule.id =:idVehicule ORDER BY client.nom";
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':idVehicule', $idVehicule);
+		$bool = $commande->execute();
+	if ($bool)
+		$facture = $commande->fetchAll(PDO::FETCH_ASSOC);
+	} catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage());
+		die();
+	}
+
+	if (count($facture) == 0) {
+		$facture = "";
+		return false;
+	} else {
+		$facture = $facture[0];
+		return true;
+	}
+}
+
 ?>

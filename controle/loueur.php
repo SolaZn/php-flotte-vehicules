@@ -47,6 +47,7 @@ function connecteL()
     afficherStock($voitures);
     afficherLocation($vlocations);
     afficherVehiculesDPR($vehicules);
+    afficherClients($clients);
 
     require("./vue/loueur/loueur.tpl");
 }
@@ -142,6 +143,31 @@ function retrait()
 
             $url = "index.php?controle=loueur&action=connecteL";
             header("Location:" . $url);
+        }
+    }
+}
+
+function facturationLoueur(){
+    if (count($_POST) == 0)     require('./vue/loueur/loueur.tpl');
+    else {
+        require("./modele/loueurBD.php");
+
+        // On vérifie que le champ contenant le nom du véhicule ne soit pas vide
+        if (!empty($_POST['idClient'])) {
+            $vehicules = array();
+            getVehicules($_POST['idClient'], $vehicules);
+            if(!empty($vehicules)){
+                $factures = array();
+                foreach($vehicules as $vehicule){
+                    getFacture($vehicule['id'], $factures[]);
+                }
+                require('./vue/loueur/facturationLoueur.tpl');
+            }
+            else{
+                echo 'a';
+            }
+        }else{
+            echo 'b';
         }
     }
 }

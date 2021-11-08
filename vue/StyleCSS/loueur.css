@@ -63,6 +63,16 @@ th {
     margin-right: auto;
     display: none;
 }
+.facturation{
+    background: rgb(177, 227, 255);
+    width: 510px;
+    padding: 30px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    display: none; 
+}
 
 #click{
     display:none;
@@ -71,6 +81,9 @@ th {
     display: none;
 }
 #clickc{
+    display: none;
+}
+#clickd{
     display: none;
 }
 
@@ -101,6 +114,16 @@ th {
     margin-left: 20%;
     border-radius: 15px;;
 }
+
+.showd{
+    margin-top: 10px;
+    cursor: pointer;
+    padding: 15px;
+    background: #fff;
+    color: #a1a1a1a1;
+    margin-left: 20%;
+    border-radius: 15px;;   
+}
 select{
     height: 100%;
     width: 100%;
@@ -130,6 +153,10 @@ form h3{
 #clickc:checked ~ .changeEtatd{
     display: block;
 }
+#clickd:checked ~ .facturation{
+    display: block;
+}
+
 .fa-times{
     color: #55595c;
     cursor: pointer;

@@ -25,15 +25,12 @@
 
 		else {
 			$profil = array();
-			$inscrit = array();
 
 			require("./modele/nonAbonneBD.php");
 
-			var_dump($_POST);
-
 			if(verifEmailIns($email,$profil)) { //verifier si le mail existe deja dans la bd
 				$msg ="cet email existe déjà";
-				require ("./vue/nonAbonne/inscription.tpl") ; 
+				require ("./vue/accueil/inscription.tpl") ;
 			}
 			elseif (verifPseudoIns($pseudo,$profil)){
 				$msg ="ce pseudo existe déjà";
@@ -84,13 +81,26 @@
 					} 
 				
 					else {
-						if(!ajouter_persone($nom, $mdp, $pseudo, $email, $adresseEnt, $denomEnt, $inscrit)){ 
+						$hash = password_hash($mdp, PASSWORD_DEFAULT);
+						
+						if(!ajouter_persone($nom, $hash, $pseudo, $email, $adresseEnt, $denomEnt)){ 
 							$msg = "Une erreur s'est produite. ";
 							require ("./vue/accueil/inscription.tpl") ;
 						} 
 						else {
 							$msg = ("Votre inscription est reussie !"); 
-							require ("./vue/accueil/inscription.tpl") ;
+							require('./controle/abonne.php');
+							require('./modele/abonneBD.php');
+
+							$profil = array();
+
+							getCredentials($pseudo, $profil);
+
+							set_session($profil);
+							echo '<script>
+							var timer = setTimeout(function() {
+								window.location=\'index.php?controle=abonne&action=accueilAbonne\'}, 3000);
+							</script>';
 						}
 					}
 				}

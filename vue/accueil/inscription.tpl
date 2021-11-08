@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./vue/abonne/assets/css/Login-Form-Clean.css">
 </head>
 
-<body style="overflow: hidden !important;">
+<body>
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid" style="gap: 15px;"><a href="index.php?controle=nonAbonne&action=accueil"><img
                     src="./vue/content/images/logo.png" height="45"></a>

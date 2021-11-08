@@ -142,6 +142,7 @@ function enregistrerReservation()
 
 function deconnexion()
 {
+    session_unset();
     session_destroy();
     $url = "index.php?controle=nonAbonne&action=accueil";
     header("Location:" . $url);

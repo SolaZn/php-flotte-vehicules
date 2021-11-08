@@ -19,7 +19,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="index.php?controle=abonne&action=connexionAbonne">Espace abonnés</a></li>
                     <li class="nav-item"><a class="nav-link"
-                            href="index.php?controle=abonne&amp;action=affichageFactures">Espace loueur</a></li>
+                            href="index.php?controle=loueur&amp;action=connecteL">Espace loueur</a></li>
                     <li class="nav-item"></li>
                 </ul>
     </nav>

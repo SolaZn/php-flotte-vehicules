@@ -24,7 +24,7 @@ function afficherStock(&$voitures){
 
 function afficherLocation(&$vlocations){
 	require("./modele/connectBD.php");
-	$sql ="SELECT vehicule.*, client.*, facture.* FROM facture JOIN vehicule ON facture.idVehicule = vehicule.id JOIN client ON facture.idClient = client.id WHERE vehicule.etat = vehicule.id ORDER BY client.nom";
+	$sql ="SELECT vehicule.*, client.*, facture.* FROM facture JOIN vehicule ON facture.idVehicule = vehicule.id JOIN client ON facture.idClient = client.id ORDER BY client.nom";
 	$commande = $pdo->prepare($sql);
 	$commande->execute();
 	$vlocations = $commande->fetchAll();
@@ -40,11 +40,9 @@ $nbplaces = isset($_POST['places']) ? $_POST['places']: '';
 $photo = isset($_POST['photo']) ? $_POST['photo']: '';
 $type = isset($_POST['retraitnom']) ? $_POST['retraitnom']:'';
 
-
-
 function retraitVoiture($id){
 	require("./modele/connectBD.php");
-	$sql = "DELETE FROM vehicule where vehicule.id =:id";
+	$sql = "DELETE FROM vehicule WHERE id =:id";
 
 	try {
         $commande = $pdo->prepare($sql);
@@ -72,7 +70,6 @@ function changeEtat($location, $id)
         echo utf8_encode("Echec de la modif : " . $e->GetMessage() . "\n");
         die();
      }   
-
 }
 
 function ajouterVoiture($type, $prix, $energie, $boite, $nbplaces, $location, $photo){
@@ -97,29 +94,6 @@ function ajouterVoiture($type, $prix, $energie, $boite, $nbplaces, $location, $p
         die();
     }
     mysqli_close($commande);
-}
-
-// Fonction verifVoiture : utilisé pour vérifier qu'un véhicule est bein présent dans la base de données
-function verifVoiture($typev, $energie, $boite, $location, &$vehicules){
-    require("./modele/connectBD.php");
-    $sql= "SELECT *FROM vehicule where type_v = :typev, energie_v = :energie, boite_v = :boite, location_v = :location_v";
-    try {
-        $commande = $pdo->prepare($sql);
-        $commande->bindParam(':typev', $typev, PDO::PARAM_STR);
-        $commande->bindParam(':energie', $energie, PDO::PARAM_STR);
-		$commande->bindParam(':boite', $boite, PDO::PARAM_STR);
-		$commande->bindParam(':location_v',$location, PDO::PARAM_STR);
-        $commande->execute();
-        if (($commande->rowCount()) > 0) {
-            $vehicules = $commande->fetchAll();
-            return true;
-        } else {
-            return false;
-        }
-    } catch (PDOException $e) {
-        echo utf8_encode("Echec de select : " . $e->GetMessage() . "\n");
-        die();
-    }
 }
 
 function verificationLoueur($email, $mdp, &$profil){

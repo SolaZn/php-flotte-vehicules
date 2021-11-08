@@ -37,7 +37,7 @@ body{
 }
 
 .ajouter{
-    background:#ffc404;
+    background: rgb(177, 227, 255);
     width: 510px;
     padding: 30px;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
@@ -46,10 +46,9 @@ body{
 	margin-right: auto;
     display: none;
     padding: 20px;
-  
 }
 .retirer{
-    background: #ffc404;
+    background: rgb(177, 227, 255);
     width: 510px;
     padding: 30px;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
@@ -59,7 +58,7 @@ body{
     display: none;
 }
 .changeEtatd{
-    background: #ffc404;
+    background: rgb(177, 227, 255);
     width: 510px;
     padding: 30px;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);

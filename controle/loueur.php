@@ -15,8 +15,9 @@ function connecteL(){
 function deconnexion(){
     session_unset();
     session_destroy();
-    require("./controle/Controller.php");
-    index();
+
+    $url ="index.php?controle=nonAbonne&action=accueil";
+    header("Location:".$url);
 }
 
 
@@ -26,26 +27,23 @@ function changerEtatVehicule(){
         require("./modele/loueurBD.php");
         $msg = '';
         // On vérifie l'existence des champs puis on vérifie certaines conditions
-        if (isset($_POST['location'], $_POST['type_v'])){
+        if (isset($_POST['location'], $_POST['id'])){
             if(empty($_POST['location'])){
                 echo"etat du véhicules manquant";
+                require("./vue/loueur/loueur.tpl");
             }
-            elseif(empty($_POST['type_v'])){
-                echo"nom du véhicules manquant";
+            elseif(empty($_POST['id'])){
+                echo"Véhicule manquant";
+                require("./vue/loueur/loueur.tpl");
             }
-            
             else {//si tout est present
-                if(!empty($_POST['type_v'])&& !empty($_POST['location'])){
-                    echo "actions";
-                    changeEtat($location, $type_v);
+                if(!empty($_POST['id'])&& !empty($_POST['location'])){
+                    changeEtat($_POST['location'], $_POST['id']);
                     // Redirection vers l'espace
                     $url ="index.php?controle=loueur&action=connecteL";
                     header("Location:".$url);
                 }
-            }
-
-                    
-                
+            } 
         }
     }
 }           
@@ -103,10 +101,10 @@ function retrait(){
         require("./modele/loueurBD.php");
 
         // On vérifie que le champ contenant le nom du véhicule ne soit pas vide
-        if(!empty($_POST['retraitnom'])){
-            $idl = $_SESSION['idl'];
-            retraitVoiture($type);
-            $url ="index.php?controle=ControllerL&action=connecteL&id=$idl";
+        if(!empty($_POST['id'])){
+            retraitVoiture($_POST['id']);
+
+            $url ="index.php?controle=loueur&action=connecteL";
             header("Location:".$url);
         }
     }

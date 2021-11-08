@@ -20,7 +20,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link active" href="#">Véhicules</a></li>
                     <li class="nav-item"><a class="nav-link"
-                            href="index.php?controle=abonne&amp;action=affichageFactures">Facturation</a></li>
+                            href="#">Facturation</a></li>
                     <li class="nav-item"></li>
                 </ul>
             </div><a class="btn btn-primary" role="button" href="index.php?controle=abonne&amp;action=deconnexion"
@@ -45,6 +45,8 @@
                 <div class="mb-3"><label class="form-label">Date de fin</label><input class="form-control" type="date" name="dateFin">
                 </div>
                 <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Réserver</button></div>
+                <div class="mb-3"><a class="btn btn-danger d-block w-100" href="index.php?controle=abonne&amp;action=reservationVehicules">Annuler la réservation</a></div>
+
             </form>
         </section>
     </div>

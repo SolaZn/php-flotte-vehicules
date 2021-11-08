@@ -96,13 +96,12 @@ function ajouterVoiture($type, $prix, $energie, $boite, $nbplaces, $location, $p
     mysqli_close($commande);
 }
 
-function verificationLoueur($email, $mdp, &$profil){
+function verificationLoueur($email, &$profil){
 	require("./modele/connectBD.php");
-	$sql = "SELECT *FROM  `loueur` where email_l = :email and mdp_l = :mdp";
+	$sql = "SELECT * FROM  `client` where email = :email";
 	try {
 		$commande = $pdo->prepare($sql);
 		$commande->bindParam(':email', $email, PDO::PARAM_STR);
-		$commande->bindParam(':mdp', $mdp, PDO::PARAM_STR);
 		$commande->execute();
 		if (($commande->rowCount()) > 0) {
 			$profil = $commande->fetchAll();//save profil
@@ -114,6 +113,31 @@ function verificationLoueur($email, $mdp, &$profil){
 	} catch (PDOException $e) {
 		echo utf8_encode("error: " . $e->GetMessage() . "\n");
 		die();
+	}
+}
+
+function getHash($login, &$hash = array())
+{
+	require("./modele/connectBD.php");
+
+	$sql = "SELECT mdp FROM `client` WHERE email=:email";
+	try {
+		$commande = $pdo->prepare($sql);
+		$commande->bindParam(':email', $login);
+		$bool = $commande->execute();
+		if ($bool)
+			$resultat = $commande->fetchAll(PDO::FETCH_ASSOC);
+	} catch (PDOException $e) {
+		echo utf8_encode("Echec de select : " . $e->getMessage());
+		die();
+	}
+
+	if (count($resultat) == 0) {
+		$hash = "";
+		return false;
+	} else {
+		$hash = $resultat[0];
+		return true;
 	}
 }
 

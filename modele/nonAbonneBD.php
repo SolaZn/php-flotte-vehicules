@@ -3,7 +3,7 @@
 function voitDisp(&$listeVoit = array())
 {
 	require("./modele/connectBD.php");
-	$sql = "SELECT * FROM vehicule WHERE etat='disponible'";
+	$sql = "SELECT * FROM vehicule WHERE etat='disponible' GROUP BY type";
 
 
 	try {

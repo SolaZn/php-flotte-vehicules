@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>La Garagerie - accueil abonnés</title>
-    <link rel="stylesheet" href="./vue/abonne/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 </head>
 
-<body>
+<body >
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid" style="gap: 15px;"><a
                 href="index.php?controle=abonne&amp;action=accueilAbonne"><img src="./vue/content/images/logo.png"
@@ -20,7 +20,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link active" href="#">Véhicules</a></li>
                     <li class="nav-item"><a class="nav-link"
-                            href="index.php?controle=abonne&amp;action=affichageFactures">Facturation</a></li>
+                            href="#">Facturation</a></li>
                     <li class="nav-item"></li>
                 </ul>
             </div><a class="btn btn-primary" role="button" href="index.php?controle=abonne&amp;action=deconnexion"
@@ -58,8 +58,20 @@
                                 echo '<img src="'. $vehicule['image'] . '" class="img-fluid rounded-start" alt="Photo de ' . $vehicule['type'] . '" style="min-width: 145%;">';
                                 echo '</div>';
                                 echo '<div class="col-md-8"><div class="card-body">';
-                                echo '<h5 class="card-title">' . $vehicule['type'] . '</h5>';
-                                echo '<p class="card-text">' . $specs['moteur'] . '</p>';
+                                echo '<h5 class="card-title">' . $vehicule['id'] . ' |    '. $vehicule['type'] . '</h5>';
+                                echo '<p class="card-text" style="display:flex;gap: 5px;"><p class="text-wrap badge bg-success" style="color: white;">' . $specs['moteur'] . '</p>';
+                                echo '<p class="text-wrap badge bg-info" style="color: white; margin-left: 4px;">' . $specs['places'] . '</p>';
+                                echo '<p class="text-wrap badge bg-dark" style="color: white; margin-left: 4px;">' . $specs['annee'] . '</p>';
+                                echo '<p class="text-wrap badge bg-warning" style="color: white; margin-left: 4px;">' . $specs['boite'] . '</p>';
+                                echo '<p class="text-wrap badge bg-primary" style="color: white; width:7rem;">' . $specs['prix'] . '€/jour</p>';
+                                if($vehicule['dateFin'] != NULL){
+                                echo '<p class="text-wrap badge bg-danger" style="color: white; margin-left: 4px;">' . $vehicule['montant'] . '€ restants à payer</p>';
+                                }
+                                echo '<br><p class="text-wrap badge bg-dark" style="color: white; width:20rem;">Dates de location</p><br>';
+                                echo '<small>Début de location</small> <p class="text-wrap badge bg-success" style="color: white; width:7rem;">' . $vehicule['dateDebut'] . '</p><br>';
+                                if($vehicule['dateFin'] != NULL){
+                                echo '<small>Fin de location</small> <p class="text-wrap badge bg-danger" style="color: white; width:7rem;">' . $vehicule['dateFin'] . '</p>';
+                                }
                                 echo '</div></div></div></div>';
                             }
 

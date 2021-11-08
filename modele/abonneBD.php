@@ -55,7 +55,7 @@ function getVehicules($idClient, &$vehicules = array())
 {
 	require("./modele/connectBD.php");
 
-	$sql = "SELECT * FROM `vehicule` WHERE etat=:id";
+	$sql = "SELECT vehicule.*, facture.dateDebut, facture.dateFin, facture.montant FROM `vehicule` JOIN facture ON facture.idVehicule = vehicule.id WHERE etat=:id";
 	try {
 		$commande = $pdo->prepare($sql);
 		$commande->bindParam(':id', $idClient);

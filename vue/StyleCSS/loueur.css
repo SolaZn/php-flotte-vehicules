@@ -19,16 +19,12 @@ h4{
 
 h1, h2, h3, h4, h5, h6, th {
     text-transform: none !important;
-	letter-spacing: 1px !important;
 }
+
 th {
 	font-size: 0.9rem !important;
 }
 
-body{
-	font-family:arial, sans-serif;
-	font-size:100%;
-}
 #tableau{
 	padding-left: 10%;
     padding-right: 10%;
@@ -119,7 +115,6 @@ select{
 form {
     padding-left: 7%;
     padding-right: 7%;
-    background-color: #sFFC40426;
 }
 
 form h3{

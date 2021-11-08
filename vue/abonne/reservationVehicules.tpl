@@ -19,7 +19,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link active" href="#">Véhicules</a></li>
                     <li class="nav-item"><a class="nav-link"
-                            href="index.php?controle=abonne&amp;action=affichageFactures">Facturation</a></li>
+                            href="#">Facturation</a></li>
                     <li class="nav-item"></li>
                 </ul>
             </div><a class="btn btn-primary" role="button" href="index.php?controle=abonne&amp;action=deconnexion"
@@ -48,14 +48,20 @@
                             foreach($vehicules as $vehicule){
                                 $specs = array();
                                 $specs = json_decode($vehicule['specs'], true);
+
                                 echo '<div class="card mb-3" style="max-width: 540px;">';
                                 echo '<div class="row g-0" >';
                                 echo '<div class="col-md-4" style="overflow: hidden;">';
                                 echo '<img src="'. $vehicule['image'] . '" class="img-fluid rounded-start" alt="Photo de ' . $vehicule['type'] . '" style="min-width: 145%;">';
                                 echo '</div>';
                                 echo '<div class="col-md-8"><div class="card-body">';
-                                echo '<h5 class="card-title">' . $vehicule['type'] . '</h5>';
-                                echo '<p class="card-text">' . $specs['moteur'] . '</p>';
+                                echo '<h5 class="card-title">'  . $vehicule['id'] . ' |    '. $vehicule['type'] .'</h5>';
+                                echo '<p class="card-text" style="display:flex;gap: 5px;"><p class="text-wrap badge bg-success" style="color: white;">' . $specs['moteur'] . '</p>';
+                                echo '<p class="text-wrap badge bg-info" style="color: white; margin-left: 4px;">' . $specs['places'] . '</p>';
+                                echo '<p class="text-wrap badge bg-dark" style="color: white; margin-left: 4px;">' . $specs['annee'] . '</p>';
+                                echo '<p class="text-wrap badge bg-warning" style="color: white; margin-left: 4px;">' . $specs['boite'] . '</p>';
+                                echo '<p class="text-wrap badge bg-primary" style="color: white; width:7rem;">' . $specs['prix'] . '€/jour</p>';
+                                echo '</p>';
                                 echo '<div class="form-check"><input type="checkbox" class="form-check-input"
                                 id="form-Check-' . $vehicule['id'] . '" value="' . $vehicule['id'] .'" name="checked[]" /><label class="form-check-label"
                                             for="form-Check-' . $vehicule['id'] . '">Sélectionner le véhicule</label></div>';

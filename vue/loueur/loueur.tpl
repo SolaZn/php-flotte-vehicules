@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light navbar-expand-md">
+    <nav class="bg-dark navbar navbar-light navbar-expand-md" style="position:fixed; width:100%;">
         <div class="container-fluid" style="gap: 15px;"><a
                 href="index.php?controle=nonAbonne&amp;action=accueil"><img src="./vue/content/images/logo.png"
                     height="45"></a><small>
@@ -22,13 +22,14 @@
         </div>
     </nav>
 
+	<br>
+	<br>
     <h1 style="text-align: center;">Bienvenue dans l'espace Loueur
     </h1>
 
 	<input type="checkbox" id="click">
 	<label for="click" class="show text-wrap badge bg-success" style="color: white; height: 15%;">Ajouter un véhicule</label>
     
-
     <div class="ajouter" name="formulaire">
         <form action="index.php?controle=loueur&action=ajout" method="post">
             <label for="click" class="close-btn fas fa-times"></label>

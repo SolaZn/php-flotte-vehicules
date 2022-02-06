@@ -12,6 +12,9 @@
 	
 	echo(getenv("CLEARDB_DATABASE_URL"));
 
+	$active_group = 'default';
+	$query_builder = TRUE;
+
 	try {
 		$dsn = "mysql:server=$cleardb_server;dbname=$cleardb_db";
 		$pdo = new PDO ($dsn, $cleardb_username, $cleardb_password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));

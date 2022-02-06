@@ -38,5 +38,6 @@ $password = $url["pass"];
 $db = substr($url["path"], 1);
 
 $conn = new mysqli($server, $username, $password, $db);
+$pdo = new PDO ("mysql:server=".$server.";dbname=".$db, $cleardb_username, $cleardb_password);
 
 ?>

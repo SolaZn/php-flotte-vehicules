@@ -15,8 +15,7 @@
 
 	try {
 		$dsn = "mysql:server=". $cleardb_server.";dbname=". $cleardb_db;
-		echo $dsn;
-		$pdo = new PDO ($dsn, $cleardb_username, $cleardb_password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+		$pdo = new PDO ($dsn, $cleardb_username, $cleardb_password);
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 	catch (PDOException $e) {

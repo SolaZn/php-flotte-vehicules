@@ -69,7 +69,7 @@ echo $dbuser . " - user<br>";
 echo $dbpassword . " - passwd<br>";
 */
 $dbanfang = 'mysql:host=' . $dbhost . ';dbname=' . $dbname;
-$db = new PDO($dbanfang, $dbuser, $dbpassword);
+$pdo = new PDO($dbanfang, $dbuser, $dbpassword);
 //You can only use this with the standard port!
 
 ?>

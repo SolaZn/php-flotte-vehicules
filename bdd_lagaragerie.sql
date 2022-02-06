@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `vehicule` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(32) NOT NULL,
   `qte` int(11) NOT NULL DEFAULT '1',
-  `specs` json NOT NULL,
+  `specs` longtext NOT NULL,
   `image` varchar(255) NOT NULL,
   `etat` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
